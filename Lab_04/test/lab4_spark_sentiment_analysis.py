@@ -13,8 +13,8 @@ def main():
     # Load Data
     data_path = "Lab_04\\data\\sentiments.csv"
     df = spark.read.csv(data_path, header=True, inferSchema=True)
-    df = df.withColumn("label", (col("sentiment").cast("integer") + 1) / 2)
     df = df.dropna(subset=["sentiment"])
+    df = df.withColumn("label", (col("sentiment").cast("integer") + 1) / 2)
     print("Total row data: ", df.count())
     df.show(5)
 
@@ -48,4 +48,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
